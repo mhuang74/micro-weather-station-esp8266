@@ -24,17 +24,20 @@ fn main() -> ! {
     write!(serial, "\r\nStart Blinking!\r\n").unwrap();
 
     loop {
+        let mut count = 0;
+
         // blink a few times in quick succession
-        for n in (1..=40).rev() {
+        for n in (1..=3).rev() {
             led.toggle().unwrap();
-            timer1.delay_ms(n*25);
+            timer1.delay_ms(n*300);
             led.toggle().unwrap();
-            timer1.delay_ms(n*25);
-        
-            // write something to serial
-            let byte = nb::block!(serial.read()).unwrap();
-            serial.write(byte).unwrap();
+            timer1.delay_ms(n*300);
         }
+
+        // write something to serial
+        count = count +1;
+        write!(serial, "\r\nCount: {}\r\n", count).unwrap();
+
     }
 }
 
