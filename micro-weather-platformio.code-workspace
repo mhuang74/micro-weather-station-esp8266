@@ -1,0 +1,9 @@
+{
+	"folders": [
+		{
+			"name": "dht11-blynk",
+			"path": "platformio/dht11-blynk"
+		}
+	],
+	"settings": {}
+}
