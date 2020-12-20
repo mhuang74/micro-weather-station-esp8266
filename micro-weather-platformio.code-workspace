@@ -1,8 +1,12 @@
 {
 	"folders": [
 		{
-			"name": "dht11-blynk",
-			"path": "platformio/dht11-blynk"
+			"name": "blynk-dht11",
+			"path": "platformio/blynk-dht11"
+		},
+		{
+			"name": "mqtt-dht11",
+			"path": "../../../../usr/local/projects/mhuang/micro-weather-station-esp8266/platformio/mqtt-dht11"
 		}
 	],
 	"settings": {}
