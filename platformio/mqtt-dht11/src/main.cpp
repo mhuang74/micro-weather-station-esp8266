@@ -1,19 +1,18 @@
 #include <Arduino.h>
-
+#include <ESP8266WiFi.h>
 #include "DHT.h"
 #include <PubSubClient.h>
-#include <ESP8266WiFi.h>
 
 #define WIFI_AP "Oaks-IOT"
 #define WIFI_PASSWORD ""
 
-#define TOKEN "ESP8266_DEMO_TOKEN"
+#define TOKEN "ESP8266_TBUG_1"
 
 // DHT
 #define DHTPIN 2
-#define DHTTYPE DHT22
+#define DHTTYPE DHT11
 
-char thingsboardServer[] = "YOUR_THINGSBOARD_HOST_OR_IP";
+char thingsboardServer[] = "192.168.8.101";
 
 WiFiClient wifiClient;
 
@@ -24,30 +23,6 @@ PubSubClient client(wifiClient);
 
 int status = WL_IDLE_STATUS;
 unsigned long lastSend;
-
-void setup()
-{
-  Serial.begin(115200);
-  dht.begin();
-  delay(10);
-  InitWiFi();
-  client.setServer( thingsboardServer, 1883 );
-  lastSend = 0;
-}
-
-void loop()
-{
-  if ( !client.connected() ) {
-    reconnect();
-  }
-
-  if ( millis() - lastSend > 1000 ) { // Update and send only after 1 seconds
-    getAndSendTemperatureAndHumidityData();
-    lastSend = millis();
-  }
-
-  client.loop();
-}
 
 void getAndSendTemperatureAndHumidityData()
 {
@@ -69,7 +44,7 @@ void getAndSendTemperatureAndHumidityData()
   Serial.print(" %\t");
   Serial.print("Temperature: ");
   Serial.print(t);
-  Serial.print(" *C ");
+  Serial.println(" *C ");
 
   String temperature = String(t);
   String humidity = String(h);
@@ -133,4 +108,28 @@ void reconnect() {
       delay( 5000 );
     }
   }
+}
+
+void setup()
+{
+  Serial.begin(115200);
+  dht.begin();
+  delay(10);
+  InitWiFi();
+  client.setServer( thingsboardServer, 1883 );
+  lastSend = 0;
+}
+
+void loop()
+{
+  if ( !client.connected() ) {
+    reconnect();
+  }
+
+  if ( millis() - lastSend > 10*1000 ) { // Update and send only after 10 seconds
+    getAndSendTemperatureAndHumidityData();
+    lastSend = millis();
+  }
+
+  client.loop();
 }
