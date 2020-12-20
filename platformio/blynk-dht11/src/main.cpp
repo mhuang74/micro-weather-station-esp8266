@@ -3,8 +3,8 @@
 
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
-#include <BlynkSimpleEsp8266.h>
 #include <DHT.h>
+#include <BlynkSimpleEsp8266.h>
 
 //// Use Blynk Static Provisioning since only expect 4 devices for my home micro weather station
 // Auth Token for device 'Sta-1' : e5rGLloeOHCGjNomaR0KNbfHXSY1fVap
