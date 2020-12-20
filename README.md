@@ -16,5 +16,13 @@ Simple esp8266 Microcontroller Project for monitoring Humidity and Temperature
 * Dev Environment
     * Platformio with VSCode
 
+## Notes
+* Rust
+    * Got as far as Blink, but unable to successfully send logs over Serial
+    * Abandoned after firmware seems corrupted after espflash; bootloader reports exception over Serial
+    * Overall, toolchain seems not mature enough yet to use in project...
+* Arduino
+    * Arduino libraries and example code makes it much easier to work in Arduino land. But instead of using Arduino IDE, Platformio + VSCode takes the whole dev experience to the next level!
+
 
 
